@@ -1,0 +1,25 @@
+Design a mobile application UI called AgroLaafi — an AI-powered plant disease detection assistant for smallholder farmers in Burkina Faso, West Africa. The app must work for users with low literacy, using icons, voice, and visuals as primary communication.
+Color palette:
+
+Primary green: #1B5E3B (dark forest green) — backgrounds, headers, main actions
+Secondary green: #2E8B57 — cards, secondary elements
+Alert red: #C0392B — disease detected states, warnings, urgent notifications
+Warning yellow: #F0B429 — caution states, pending analysis, accent highlights
+White: #FFFFFF — card backgrounds, text on dark, clean surfaces
+Light cream: #F9F5ED — screen backgrounds
+Dark text: #1E1E1E
+
+Design language: Clean, friendly, high-contrast. Rounded corners everywhere (12–16px radius). Large touch targets (min 56px). Bold iconography. Minimal text — rely on icons + color coding for status.
+Screens to design (6 screens):
+Screen 1 — Home / Dashboard
+Bottom navigation bar with 4 icons: Home, Scan, Map, Community. Hero section with a large circular green "Scan your plant" CTA button (camera icon, 80px, centered). Below: 3 quick-stat cards showing today's weather, recent alerts in my region, last diagnosis result. Top bar shows app logo "AgroLaafi" with a leaf icon and a microphone icon (voice mode toggle) on the right.
+Screen 2 — Camera / Scan Screen
+Full-screen camera viewfinder with rounded overlay frame to position the plant leaf. Top: back arrow + "Point at the sick leaf" label. Bottom sheet: large circular red shutter button (80px), gallery access icon on left, flash toggle on right. Subtle animated scan line across the viewfinder (green tint). Status text: "Hold steady — analyzing…"
+Screen 3 — Disease Detected Result (Alert State)
+Top section: red background header card showing disease icon + bold text "Disease Detected" + disease name "Mildiou (Tomato Late Blight)" in large bold font. Below: confidence score badge (e.g. "94% confidence") in yellow. Photo thumbnail of the analyzed leaf. Three action buttons: "Treatment Plan" (green filled), "Call an Expert" (white outlined), "Share with Community" (white outlined). Bottom: a map preview card showing nearby cases in the region with red dot markers.
+Screen 4 — Treatment Plan
+Clean white card layout. Header: green background with leaf icon + "Recommended Treatment". Step-by-step treatment cards (1, 2, 3) each with an icon, bold step title, and short description. Each card has a left colored bar: green for safe steps, yellow for caution steps, red for urgent steps. Bottom: "Mark as Done" green CTA button + "Listen in Mooré" voice button with speaker icon.
+Screen 5 — Community / Map Screen
+Split layout: top half is a map view (green tones) with colored dot markers — red dots for active disease outbreaks, yellow dots for suspected cases, green dots for healthy zones. Bottom sheet: scrollable list of recent community alerts. Each alert card shows: crop icon, disease name, location, time ago, and a colored status badge (red = confirmed, yellow = suspected). FAB button (green, + icon) to post a new alert.
+Screen 6 — Onboarding / Language Select
+Dark green background (#1B5E3B). Centered AgroLaafi logo (large leaf icon + app name in white, bold). Tagline below in italic white: "Votre conseiller agricole intelligent". Language selection: 4 large rounded buttons — Français, Mooré, Dioula, Fulfuldé — white background, dark green text, with a small flag-like color accent per language. Bottom: "Continue" button in yellow/gold, full width, rounded.
