@@ -1,0 +1,392 @@
+FILE: AGROLAAFI.pptx
+SLIDE 1
+AGROLAAFI
+By Fayçal Nacoulma & BIAM Alfred & Larissa CONSEIGA
+SLIDE 2
+CONCEPT
+AgroLaafi est une application mobile alimentée par l’intelligence artificielle qui permet aux agriculteurs burkinabè de détecter les maladies de leurs cultures à partir d’une simple photo.En combinant vision par ordinateur, géolocalisation et conversation en langue locale, AgroLaafi devient un assistant agricole intelligent accessible même aux agriculteurs sans formation technique.
+12/11/2025
+AgroLAAFI
+2
+SLIDE 3
+Fonctionnalités
+Diagnostique par photo
+Assistant vocal EN LANGUES LOCALES
+Connexion aux experts et communautés
+Détectez les maladies de vos plantes en un simple cliché. Notre IA identifie le problème et vous guide vers la solution la plus efficace, sans attendre un expert.
+Parlez à AgroScan comme à un conseiller. L’application écoute, comprend et répond dans votre langue (mooré, dioula, fulfuldé…), éliminant toute barrière linguistique.
+Besoin d’un second avis ? Connectez-vous en un clic à des experts agricoles ou à d’autres agriculteurs de votre région pour partager vos expériences et vos solutions.
+Conseils localisés et personnalisés
+Chaque région, chaque climat, chaque sol est différent. AgroScan vous fournit des recommandations adaptées à votre zone, pour des cultures plus saines et plus productives.
+12/11/2025
+AgroLAAFI
+3
+SLIDE 4
+Innovation du projet
+Ia locale
+Entraînée sur des données burkinabè : cultures, maladies et climats réels.
+Multilingue & vocale
+Interaction en langue locale et français
+Interface simple
+Photo + voix = diagnostic et conseils immédiats.
+Conseils personnalisés
+Recommandations adaptées à la culture, à la région et à la saison.
+12/11/2025
+AgroLAAFI
+4
+Geodatabase : Base de données locale géolocalisée
+une base de données locale géolocalisée qui regroupe le moment, le lieu et le mode de traitement de chaque information afin de faciliter la traçabilité et l’anticipation.
+SLIDE 5
+Faisabilité technique
+IA locale
+Conversationnelle
+Modèles de vision par ordinateur entraînés sur des données collectées localement : cultures, maladies et conditions climatiques du Burkina Faso.
+Mobile & hors-ligne
+Amélioration continue
+Application légère fonctionnant même sans connexion.
+Chaque photo partagée enrichit la base de données et améliore l’IA.
+12/11/2025
+AgroLAAFI
+5
+Interaction vocale en langue locale et français grâce à un modèle de langage optimisé.
+SLIDE 6
+Opportunité de marché
+80%
+de la population active au Burkina Faso travaille dans l’agriculture.
+1/11000
+ratio d’experts agricoles par rapport aux agriculteurs 
+→ suivi limité.
+40%
+pertes annuelles de récoltes dues aux maladies des plantes.
+12/11/2025
+AgroLAAFI
+6
+SLIDE 7
+Meet the team
+Larissa CONSEIGA​​
+Etudiante en 3ième année bachelor of engineering
+Mathieu Andjou TRAORE​​
+Elève ingenieur,  Assistant consultant à TOMORROW SYSTEM​
+12/11/2025
+AgroLAAFI
+7
+Fayçal Nacoulma
+Ingénieur en agronomie
+---
+FILE: AgroLaafi_Business_Plan.pptx
+SLIDE 1
+AgroLaafi
+BUSINESS PLAN 2026
+AgroLaafi
+L'IA agricole au cœur du champ africain
+Laafi Box · Application Mobile · Géodatabase locale
+2 M
+Exploitations cibles au Burkina Faso
+30 M FCFA
+Investissement initial
+20 mois
+Retour sur investissement estimé
+40 %
+Marge brute par Laafi Box
+Larissa Conseiga, Alfred BIAM, Aiman Koné & Fayçal Nacoulma  ·  Ouagadougou, Burkina Faso  ·  Confidentiel — Mars 2026
+SLIDE 2
+SOMMAIRE
+Plan du Business Plan
+01
+Contexte et Problème
+L'agriculture burkinabè sous tension
+02
+La Solution AgroLaafi
+Laafi Box et Application mobile
+03
+Technologies embarquées
+Stack technique et architecture
+04
+Analyse de marché
+TAM · SAM · SOM
+05
+Modèle économique
+Stratégie de prix et revenus
+06
+Plan de développement
+3 phases sur 36 mois
+07
+Projections financières
+CA, coûts, rentabilité
+08
+Impact et Conclusion
+Social, environnemental, vision
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 3
+01 — CONTEXTE
+Un secteur agricole sous haute tension
+80 % de la population active  ·  30 % du PIB national  ·  2 millions d'exploitations familiales
+Désert d'encadrement
+60 % des agriculteurs d'Afrique subsaharienne n'ont accès à aucune information agricole structurée en temps réel. (Source : Union Africaine)
+Impact financier massif
+Les maladies des cultures représentent plus de 4 milliards de dollars de pertes par an sur le continent africain. (Source : Banque Mondiale)
+Climat accélérateur
++2°C à +3°C au Sahel d'ici 2050. Les agents pathogènes mutent plus vite, rendant les savoirs agricoles traditionnels obsolètes.
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 4
+02 — SOLUTION
+Deux produits, une mission : l'IA pour chaque agriculteur
+⭐  PRODUIT PHARE — LANCEMENT AN 1
+Laafi Box
+Appareil physique autonome — IA embarquée
+📷  Caméra — diagnostic maladie par photo
+🔊  Réponse vocale : Mooré, Dioula, Fulfuldé
+🧠  IA embarquée — zéro connexion requise
+☀️  Autonomie : panneau solaire + batterie
+📟  Écran — interface sans lecture nécessaire
+🌍  Fonctionne dans les zones les plus reculées
+PHASE 2 — COMPLÉMENT NUMÉRIQUE
+Application Mobile
+Assistant connecté & communautaire
+🗺️  Cartographie épidémies en temps réel
+💬  Communauté agriculteurs ↔ experts
+📊  Fiches techniques avancées par région
+🔔  Alertes saisonnières personnalisées
+📡  Synchronisation avec les données Laafi Box
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 5
+03 — TECHNOLOGIE
+Laafi Box — Architecture technique
+Un appareil robuste, conçu pour les conditions extrêmes du terrain sahélien
+Processeur IA
+ESP32-S3 ou Raspberry Pi Zero 2W
+TensorFlow Lite — inférence locale
+Énergie autonome
+Panneau solaire 5W + batterie LiPo
+Autonomie 3 jours sans ensoleillement
+Interface vocale
+Modèles Vosk offline
+Mooré · Dioula · Fulfuldé
+Connectivité
+100 % hors ligne en mode usage
+Sync BLE / SMS périodique
+Robustesse
+Boîtier IP54 (poussière & projections)
+Opération : 0°C – 55°C
+Modèle IA agricole
+Fine-tuné sur données burkinabè
+20+ maladies des cultures locales
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 6
+04 — MARCHÉ
+Un marché immense, encore vierge de solutions adaptées
+SOM
+150 u.
+TAM
+2 000 000
+Exploitations familiales — Burkina Faso
+SAM
+600 000
+Foyers accessibles via ONG & coopératives
+SOM An 1
+150 unités
+Laafi Box — objectif de lancement
+Accès info agri.
+< 40 %
+Agriculteurs sub-sahariens informés en temps réel
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 7
+05 — REVENUS
+Modèle économique : simple au lancement, scalable ensuite
+PHASE 1 — Lancement : Vente du Laafi Box uniquement
+Coût fabrication
+25 000
+FCFA / unité
+Prix de vente
+40 000
+FCFA / unité
+Marge brute
+~40 %
+par appareil
+Objectif An 1
+150 unités
+via ONG & coopératives
+PHASE 2 & 3 — Revenus complémentaires à partir de l'An 2
+Freemium App
+Abonnement mensuel : accès aux experts et fiches techniques avancées. Cible : agriculteurs connectés.
+Licences Géodatabase
+Données épidémiologiques anonymisées. Clients : ONG, Ministère, assurances, semenciers.
+Publicité ciblée
+Espaces in-app non-intrusifs. Fournisseurs d'intrants, microfinance, vendeurs d'outillage.
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 8
+06 — ROADMAP
+Plan de développement sur 36 mois
+0 – 12 mois
+01  Lancement Terrain
+→  Prototype Laafi Box fonctionnel
+→  Constitution dataset maladies locales
+→  150 unités vendues via ONG & coopératives
+→  Tests pilotes région Ouagadougou
+→  Partenariats coopératives agricoles
+12 – 24 mois
+02  Lancement Digital
+→  Déploiement application mobile
+→  Géodatabase enrichie par les terrains
+→  Modèle freemium + licences ONG
+→  Objectif : 5 000 utilisateurs actifs
+→  Partenariats ministères & bailleurs
+24 – 36 mois
+03  Extension Régionale
+→  Expansion : Niger, Mali, Sénégal
+→  Laafi Box v2 — améliorations terrain
+→  Publicité ciblée in-app activée
+→  50 000+ utilisateurs cumulés
+→  Levée de fonds Série A envisagée
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 9
+07 — FINANCE
+Projections financières réalistes — 3 scénarios
+Investissement initial
+30 M FCFA
+R&D+proto 12M · IA+logiciel 6M · Terrain 5M · Salaires 4,5M · Admin 2,5M
+CA An 1 (150 Laafi Box)
+6 M FCFA
+Prix vente 40 000 FCFA / unité
+Marge brute An 1
+~40 %
+Coût fabrication estimé 25 000 FCFA
+Seuil de rentabilité
+20 mois
+Modèle conservative, sans subvention
+* Projections conservatives. Subventions institutionnelles non incluses dans ces estimations.
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 10
+08 — IMPACT
+Impact social & environnemental
+Pour les agriculteurs
+Réduction des pertes de récoltes par diagnostic instantané. Sécurisation des revenus de 2 millions d'exploitations familiales burkinabè, y compris les femmes rurales.
+Pour les experts agronomes
+Automatisation des tâches de routine. Cartographie temps réel des foyers de maladies. Capacité d'intervention décuplée sur le terrain.
+Pour les communautés
+Connexion directe producteurs ↔ experts. Inclusion des jeunes et des femmes sans formation technique. Résilience collective renforcée.
+Pour le Burkina Faso
+Souveraineté alimentaire et numérique. Modernisation du secteur employant 80 % de la population. Actif national de données agricoles locales.
+🎯  Aligné ODD : #1 Pas de pauvreté · #2 Faim Zéro · #13 Action Climat · #17 Partenariats pour les objectifs
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 11
+ÉQUIPE — 4 MEMBRES
+L'équipe fondatrice
+4 membres · Agronomie · Ingénierie · IA · Gestion de projet — ancrés dans la réalité burkinabè
+Fayçal Nacoulma
+Co-fondateur · Ingénieur Agronome
+✓  Agronomie & pathologies végétales locales
+✓  Connaissance terrain Burkina Faso
+✓  Validation scientifique des modèles IA
+✓  Réseau coopératives & validation terrain
+Larissa Conseiga
+Co-fondatrice · Cheffe de projet · Ingénieure 2iE
+✓  3e année Bachelor of Engineering — 2iE
+✓  Architecture technique & développement
+✓  Gestion de projet & modélisation financière
+✓  Coordination équipe : Alfred BIAM (ingénierie) & Aiman Koné (IA, 2iE)
+AgroLaafi — Business Plan Confidentiel 2026
+SLIDE 12
+Rejoignez la
+révolution agricole
+africaine
+AgroLaafi : l'IA au service des paysans
+larissacherifa7@gmail.com
+Ouagadougou, Burkina Faso
+Programme SEF — 2iE
+Accélérateur pour passer du prototype au produit, avec mentorat, réseau et accompagnement.
+Partenaires institutionnels
+Ministères, ONG, bailleurs — cofinancer et distribuer le Laafi Box dans les coopératives.
+Investisseurs
+40 % de marge brute, 2M d'exploitations cibles, scalable à toute l'Afrique de l'Ouest.
+© 2026 AgroLaafi — Document Confidentiel
+---
+FILE: Maladie word.docx
+P1: Acariose bronzée (Aculops lycopersici)
+P2: Causé par un acarien très petit, visible seulement aux fortes attaques. Infeste surtout tomates et physalis en été.
+Symptômes et dégâts : Feuilles et tiges virant au brun-rouille, dessèchement; fruits tachés et fissurés (subérisation). Plantes gravement touchées peuvent mourir.
+P4: Lutte : Traitement précoce au soufre. Introduire acariens prédateurs (Amblyseius swirskii) [2]. Bonnes pratiques : éviter le stress hydrique, surveiller régulier.
+P9: Alternariose (Alternaria solani) :
+P10: Champignon aui s’attaque a la partie supérieur de la plante. Se conserve sur débris et semences, favorisé Par l’humidité et les températures idéales 20–30 °C. Cycle court via conidies dispersées par l’eau et le vent.
+Symptômes et dégâts : Taches circulaires brunes entouré d’un halo jaune sur feuilles, bord jaune; nécroses noires sur tiges.
+P15: Les fruits présentent des taches brun-rouge au sommet. Défaut de croissance foliaire.
+P16: Lutte : Rotation de cultures hors solanacées; éliminer feuilles malades. Fongicides protecteurs (mancozèbe 2–3 kg/ha, chlorothalonil 1–2 kg/ha, azoxystrobine 0,5–1 L/ha). Biopesticide cuivre (bouillie Bordelaise 3–5 kg/ha). Maintenir densité faible, fertilisation modérée.
+P18: Anthracnose (Colletotrichum sp.) :
+P19: Champignon qui s’attaque au fruit mur et créé de tache en forme de tumeur.
+Symptômes et dégâts : Taches sombres enfoncées sur fruits vert/mûr, pourriture molle interne.
+P20: Lutte : Éviter humidité sur fruits; ôter fruits pourris. Fongicides systémiques (ex. tébuconazole 0,5–1 L/ha). Variétés tolérantes. Utilisation de Bacillus subtilis en biologique.
+P29: Araignée rouge / Tétranyque :
+P30: acariens (Tetranychus urticae) suceurs. Cycle rapide en chaleur et sécheresse.
+P32: Symptômes et dégâts : Feuilles piquées, argentées à brunes, toile fine visible. 
+ Fortes attaques dessèchent la plante.
+Lutte : Lutte biologique (Amblyseius swirskii, Raoiella); acaricides spécifiques (ex. spiromesifen). Paillage pour augmenter humidité. Rotation légumineuses (répulsif).
+P35: Botrytis (Botrytis cinerea) :
+P36: Champignon nécrotrophe en conditions fraîches et humides.
+Symptômes et dégâts : Taches foliaires brunes mouillées, duvet gris sur tiges et fruits pourris. 
+ Fortes pertes en serre.
+Lutte : Aération, suppression organes infectés. Fongicides (cyprodinil+fludioxonil, iprodione). Biocontrôle (Ampelomyces quisqualis). Pas d’excès d’azote.
+P38: Carence en azote :
+P39: déficit nutritif.
+Symptômes et dégâts : Feuilles jaunes, surtout anciennes, croissance ralentie.
+P40: Lutte : Fertilisation azotée (urée, engrais organiques). Équilibrer NPK selon sol. Paillage pour retenir l’azote.
+P41: Carence en potassium :
+P42: déficit nutritif.
+Symptômes et dégâts : Bordure feuillée jaune/brun (nécrose marginelle), taches sur fruits.
+P43: Lutte : Apport de K (chlorure de potassium 0,5–1 kg/ha). Amendements potassiques, cendre de bois.
+P47: CMV (Virus de la mosaïque du concombre) : virus transmis par pucerons.
+Symptômes et dégâts : Feuilles tachetées jaune/vert (mosaïque), déformation. Fruits striés.
+P49: Lutte : Semences saines. Récolte précoce. Contrôle pucerons (imidaclopride, savon potassique). Variétés résistantes rares.
+P50: Coup de soleil : brûlure thermique.
+P51: Symptômes et dégâts : Taches blanchâtres/brunes sur fruits exposés au soleil.
+P52: Lutte : Paillage, ombrage (filets). Arrosages réguliers. Éviter excès d’azote en plein soleil.
+P61: Flétrissement bactérien (Ralstonia solanacearum) :
+P62: bactéries du sol.
+Symptômes et dégâts : Flétrissement subit, tiges sèches, exsudat blanc au collet. Mort du plant.
+P63: Lutte : Rotation ≥2 ans; drainer sol; utilisation de matières nématophages; semences saines (trempage eau chaude). Pas de chimie efficace spécifique
+P65: • Fusariose (Fusarium oxysporum f.sp. lycopersici)  Champignon souterrain formant chlamydospores. Symptômes: Flétrissement progressif d’un seul côté, feuilles basales jaunes, tiges sectionnées montrent du brun-rouge interne (xylème).
+P68: Lutte: Variétés porte-greffes résistantes, rotation ≥3 ans hors solanacées, brûler résidus.
+P73: • Fonte de semis
+P74: Maladie cryptogamique (Pythium spp., Fusarium spp.) des jeunes plants. Symptômes: Plants germés flétrissent dès l’émergence, collet brun, chutes au stade cotylédon.
+P76: Lutte: Semis en substrat stérile, arrosage modéré, traitement du sol (Thiophanate-méthyl ou fongicides homologués sur les semences). Paillage pour réguler humidité, éviter surpeuplement.
+P77: • Gale bactérienne (Clavibacter michiganensis)
+P78: Bactérie provoquant chancres et abscissions. Symptômes: Cankers ponctiformes sur tiges, cloques sur feuilles; fluage orangé exsudant.
+P80: Lutte: Semences certifiées, désinfection du matériel. Eliminer plants atteints, rotation longue; traitements chimiques cuivré.
+P81: • Mildiou (Phytophthora infestans) – Oomycète amphibien. Symptômes: 
+ Lésions aqueuses brun-foncé sur feuilles, duvet blanc sur face inférieure; fruits tachés nécrotiques. Défoliation sévère par temps frais-humide.
+P83: Lutte: Variétés tolérantes, rotation hors solanacées. Fongicides systémique (métalaxyl) ou contact (mancozèbe 2-3 kg/ha, chlorothalonil 1-2 kg/ha, azoxystrobine). Cuivre 3-5 kg/ha, semis sains.
+P84: • Mineuse de la tomate (Tuta absoluta) – Lépidoptère dont les larves minent les feuilles. Symptômes: 
+ Feuilles percées de galeries blanchâtres nécrosées et taches; fruits troués et minés, souvent pourris secondairement. Lutte: Piéger adultes (lampes UV, phéromones), filets anti-insectes. Enlever tiges/fruits parasités. Insecticides homologués (Bacillus thuringiensis ac. var. kurstaki, spinosad) en cas d’alerte; introduction de prédateurs e.g. Nesidiocoris.
+P85: • Mouche blanche (Bemisia tabaci) – Aleurode suceur. Symptômes: Feuilles collantes de miellat, fumagine noire; décoloration des feuilles (chlorose).
+P87: Lutte: Filets anti-insectes, rotation des cultures. Insecticides nicotinoïdes (imidaclopride), pyréthrinoïdes ou pyréthroids ; savon potassique pour infestations légères. Lutte biologique : Encarsia formosa, acariens prédateurs.
+P88: • Nécrose apicale – Carence en calcium (désordre physiologique). Symptômes: 
+ Pourriture brune concave au bas des fruits (cul noir); fruits secs et déformés au contact du sol. Non infectieux. Lutte: Apport régulier de calcium (chaux, nitrate de Ca), irrigation homogène (paillage). Couper fruits atteints ; fertilisation équilibrée (éviter excès d’azote).
+P89: • Nématodes à galles (Meloidogyne spp.)
+P90: Nématodes parasites racinaires. Symptômes: (photo non spécifiée) Racines grosses nodosités; plants chétifs, feuilles jaunes, rendement très diminué.
+P92: Lutte: Rotation de longue durée; produits bios (Paecilomyces lilacinus, PurPure) ou nématicides bio (extrait de neem). Porte-greffes résistants (racines soja). Aucune solution chimique grand public.
+P93: • Noctuelle de la tomate (Helicoverpa armigera)
+P95: Lépidoptère ravageur (ver de la tomate). Symptômes: Chenilles perforent fruits et tiges, laissant des trous; galeries brunâtres internes. Chutes et nécroses.
+P97: Lutte: Bacillus thuringiensis, formulations (Dipel), spinosad (Tracer) appliqués sur jeunes chenilles. Pièges à phéromones adultes ; rotation vers non-solanacées.
+P98: • Oidium (Leveillula taurica) – Champignon poudreux. Symptômes: 
+ Poudre blanche sur feuilles supérieures; rougissement puis dessèchement des tiges. Pas de taches sur fruits. Lutte: Soufre mouillable (3–5 kg/ha), azoxystrobine (Quadris), trifloxystrobine. Biopesticide Ampelomyces (AQ10). Bonnes pratiques : espace entre plants, semences propres.
+P99: • Puceron Insecte suceur ( Myzus persicae).
+P100: Symptômes:  Feuilles chiffonnées ou enroulées, présence de colonies vertes/noires au revers; miellat collant, fumagine.
+P104: Lutte: Insecticides nicotinoïdes (imidaclopride) ou pyréthrinoïdes. Acaricides acariens pour lutte biologique : coccinelles, Aphidius. Répulsifs (ail, savon).
+P105: • Stemphyliose (Stemphylium solani)
+P106: Attaque fongique du  feuillage. Symptômes:  Taches circulaires grises-brunes sur feuilles, entourées de halos jaunes; nécroses étendues.
+P108: Lutte: Fongicides triazoles (propiconazole) ou mancozèbe. Rotation hors bulbes, épandage paillage sanita.
+P110: • Tarsonème (Polyphagotarsonemus latus)
+P111: Acariens suceurs. Symptômes: Feuilles tachées de cafés, déformation foliaire (enroulées), croissance ralentie.
+P113: Lutte: Acaricides spécialisés (spiromesifen), prédateurs Phytoseiulus persimilis. Maintenir hygrométrie > 60%.
+P114: • Thrips (Frankliniella occidentalis)
+P115: Insectes pollu-suceurs. Symptômes: Feuilles argentées, vrillées ; petits points noirs (excréments). Fleurs déformées.
+P117: Lutte: Spinosad (Tracer), pyréthrinoïdes. Encadrer avec Omite (spirodiclofen) biocontrôle. Filets insect-proof et fongicides botrytes profilactiques.
+P118: • TMV (Virus de la mosaïque du tabac) – Tobamovirus transmissible par outils. Symptômes: Mosaïque verte-jaune marquée sur feuilles, déformations. Fruits zébrés.
+P120: Lutte: Semences certifiées, désinfection outils (hypochlorite). Hygiène stricte (gants, casser feuilles).
+P121: • TYLCV (Virus enroulement foliaire)
+P122: Begomovirus vecteur aleurode.
+P124: Symptomes Feuilles étroites enroulées, jaunissement concentré sur pétiole. Retard de floraison, peu de fruits.
+P125: Lutte: Filets anti-aleurodes, destruction plants infectés. Utiliser Insecticides cibles (imidaclopride, pyréthrines). Variétés résistantes (gènes Ty).
+P126: • Verticilliose (Verticillium albo-atrum/dahliae) – Ascomycète du sol.
+P127: Symptômes: 
+ Feuilles jaunissent par taches le long des nervures; flétrissement partiel, brunissement du xylème. Lutte: Rotation longue, amendements organiques, sol calcaire (neutralise). Variétés tolérantes . Pas de fongicide racinaire efficace commercial.
+---

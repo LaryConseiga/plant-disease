@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.env
+venv/
+env/
+
+# Images scrapées (386 MB - trop lourd pour GitHub, régénérer avec scrape_inaturalist.py)
+data/scraped/
+
+# TensorFlow / Keras checkpoints lourds
+models/best_phase2.keras
+models/agrolaafi_v1_float16.tflite
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

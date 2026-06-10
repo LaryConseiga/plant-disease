@@ -1,0 +1,35 @@
+image_path,label,folder,filename,source_rid
+images\acariose_bronzée\img_001.jpeg,Acariose bronzée,acariose_bronzée,img_001.jpeg,rId5
+images\acariose_bronzée\img_002.jpeg,Acariose bronzée,acariose_bronzée,img_002.jpeg,rId6
+images\alternariose\img_001.png,Alternariose,alternariose,img_001.png,rId8
+images\alternariose\img_002.jpeg,Alternariose,alternariose,img_002.jpeg,rId9
+images\anthracnose\img_001.jpeg,Anthracnose,anthracnose,img_001.jpeg,rId10
+images\araignée_rouge_tétranyque\img_001.jpeg,Araignée rouge / Tétranyque,araignée_rouge_tétranyque,img_001.jpeg,rId11
+images\araignée_rouge_tétranyque\img_002.png,Araignée rouge / Tétranyque,araignée_rouge_tétranyque,img_002.png,rId12
+images\botrytis\img_001.png,Botrytis,botrytis,img_001.png,rId13
+images\carence_en_azote\img_001.jpeg,Carence en azote,carence_en_azote,img_001.jpeg,rId14
+images\carence_en_potassium\img_001.jpeg,Carence en potassium,carence_en_potassium,img_001.jpeg,rId15
+images\cmv\img_001.jpeg,CMV,cmv,img_001.jpeg,rId16
+images\coup_de_soleil\img_001.jpeg,Coup de soleil,coup_de_soleil,img_001.jpeg,rId17
+images\flétrissement_bactérien\img_001.jpeg,Flétrissement bactérien,flétrissement_bactérien,img_001.jpeg,rId18
+images\fusariose\img_001.jpeg,Fusariose,fusariose,img_001.jpeg,rId19
+images\fusariose\img_002.jpeg,Fusariose,fusariose,img_002.jpeg,rId20
+images\fonte_de_semis\img_001.jpeg,Fonte de semis,fonte_de_semis,img_001.jpeg,rId21
+images\gale_bactérienne\img_001.jpeg,Gale bactérienne,gale_bactérienne,img_001.jpeg,rId22
+images\gale_bactérienne\img_002.jpeg,Gale bactérienne,gale_bactérienne,img_002.jpeg,rId23
+images\mildiou\img_001.png,Mildiou,mildiou,img_001.png,rId24
+images\mildiou\img_002.jpeg,Mildiou,mildiou,img_002.jpeg,rId25
+images\mineuse_de_la_tomate\img_001.png,Mineuse de la tomate,mineuse_de_la_tomate,img_001.png,rId26
+images\mouche_blanche\img_001.jpeg,Mouche blanche,mouche_blanche,img_001.jpeg,rId27
+images\nécrose_apicale\img_001.png,Nécrose apicale,nécrose_apicale,img_001.png,rId28
+images\nématodes_à_galles\img_001.jpeg,Nématodes à galles,nématodes_à_galles,img_001.jpeg,rId29
+images\noctuelle_de_la_tomate\img_001.jpeg,Noctuelle de la tomate,noctuelle_de_la_tomate,img_001.jpeg,rId30
+images\oidium\img_001.png,Oidium,oidium,img_001.png,rId12
+images\puceron\img_001.jpeg,Puceron,puceron,img_001.jpeg,rId31
+images\puceron\img_002.jpeg,Puceron,puceron,img_002.jpeg,rId32
+images\stemphyliose\img_001.jpeg,Stemphyliose,stemphyliose,img_001.jpeg,rId33
+images\tarsonème\img_001.jpeg,Tarsonème,tarsonème,img_001.jpeg,rId34
+images\thrips\img_001.jpeg,Thrips,thrips,img_001.jpeg,rId35
+images\tmv\img_001.jpeg,TMV,tmv,img_001.jpeg,rId36
+images\tylcv\img_001.jpeg,TYLCV,tylcv,img_001.jpeg,rId37
+images\verticilliose\img_001.png,Verticilliose,verticilliose,img_001.png,rId38
