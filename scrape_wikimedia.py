@@ -15,7 +15,7 @@ import requests
 from pathlib import Path
 
 # ── Chemins ───────────────────────────────────────────────────────────────────
-BASE_DIR = Path(r"c:\Users\Larissa CONSEIGA\agrolaafi\plant-disease")
+BASE_DIR = Path(__file__).resolve().parent
 OUT_DIR  = BASE_DIR / "data" / "scraped" / "wikimedia"
 
 MAX_PER_CLASS = 60

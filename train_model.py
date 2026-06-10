@@ -30,7 +30,7 @@ print(f"TensorFlow {tf.__version__}  |  GPU: {tf.config.list_physical_devices('G
 # 1. CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
 
-BASE_DIR   = Path(r"c:\Users\Larissa CONSEIGA\agrolaafi\plant-disease")
+BASE_DIR   = Path(__file__).resolve().parent
 DATA_DIR   = BASE_DIR / "data"
 MODELS_DIR = BASE_DIR / "models"
 PLOTS_DIR  = BASE_DIR / "plots"
@@ -97,6 +97,21 @@ LABEL_MAP = {
     "mineuse_de_la_tomate":     "Mineuse tomate",
     "mouche_blanche":            "Mouche blanche",
     "noctuelle_de_la_tomate":   "Noctuelle tomate",
+    # ── Source PlantVillage (via tensorflow-datasets) ────────────────────────
+    "tomato_bacterial_spot":    "Gale bacterienne",
+    "tomato_early_blight":      "Alternariose",
+    "tomato_late_blight":       "Mildiou",
+    "tomato_leaf_mold":         "Mildiou",
+    "tomato_septoria":          "Stemphyliose",
+    "tomato_spider_mites":      "Araignee rouge",
+    "tomato_target_spot":       "Anthracnose",
+    "tomato_tylcv":             "TYLCV",
+    "tomato_mosaic_virus":      "TMV",
+    "potato_early_blight":      "Alternariose",
+    "potato_late_blight":       "Mildiou",
+    "pepper_bacterial_spot":    "Gale bacterienne",
+    "squash_powdery_mildew":    "Oidium",
+    "tomato_healthy":           "Saine",
 }
 
 
@@ -113,6 +128,7 @@ SOURCES = [
     DATA_DIR / "images_augmented",                   # docx + augmentation
     DATA_DIR / "scraped" / "inaturalist",            # iNaturalist API
     DATA_DIR / "scraped" / "wikimedia",              # Wikimedia Commons
+    DATA_DIR / "scraped" / "plantvillage",           # PlantVillage public dataset
 ]
 
 def collect_all_images() -> dict[str, list[Path]]:
