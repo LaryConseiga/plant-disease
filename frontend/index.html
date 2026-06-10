@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AgroLaafi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── Variables ────────────────────────────────────────────────────────────── */
+:root {
+  --g1: #1B5E3B;
+  --g2: #2E8B57;
+  --g3: #4CAF7D;
+  --red: #C0392B;
+  --yellow: #F0B429;
+  --white: #FFFFFF;
+  --cream: #F9F5ED;
+  --dark: #1E1E1E;
+  --gray: #9E9E9E;
+  --gray-light: #EFEFEF;
+  --shadow: 0 4px 20px rgba(0,0,0,0.10);
+  --radius: 16px;
+}
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Inter', sans-serif; color: var(--dark); }
+button { border: none; cursor: pointer; font-family: inherit; }
+input  { font-family: inherit; }
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+body {
+  background: #1a2a1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.phone {
+  width: 390px;
+  height: 844px;
+  background: var(--cream);
+  border-radius: 44px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 2px #333;
+}
+
+@media (max-width: 430px) {
+  body { background: var(--cream); align-items: flex-start; }
+  .phone { width: 100vw; height: 100dvh; border-radius: 0; box-shadow: none; }
+}
+
+/* ── Screens ──────────────────────────────────────────────────────────────── */
+.screen {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  background: var(--cream);
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.screen.active {
+  opacity: 1; transform: translateX(0);
+  pointer-events: all; z-index: 2;
+}
+.screen.out {
+  opacity: 0; transform: translateX(-40px);
+  pointer-events: none; z-index: 1;
+}
+
+/* ── Top bar ──────────────────────────────────────────────────────────────── */
+.topbar {
+  background: var(--g1);
+  padding: 48px 20px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.topbar-logo {
+  display: flex; align-items: center; gap: 8px;
+  color: white; font-size: 20px; font-weight: 800;
+}
+.topbar-logo i { font-size: 22px; color: #7DCD9A; }
+.topbar-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 18px; cursor: pointer;
+}
+.topbar-back {
+  color: white; font-size: 20px; cursor: pointer;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 12px; background: rgba(255,255,255,0.15);
+}
+.topbar-title { color: white; font-size: 17px; font-weight: 700; flex: 1; text-align: center; }
+
+/* ── Bottom nav ───────────────────────────────────────────────────────────── */
+.bottom-nav {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 76px; background: white;
+  border-top: 1px solid #E8E8E8;
+  display: flex; align-items: center; justify-content: space-around;
+  z-index: 50; padding-bottom: 10px;
+}
+.nav-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 18px; border-radius: 12px;
+  background: transparent; cursor: pointer;
+  color: var(--gray); transition: color 0.2s;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.3px;
+}
+.nav-btn i { font-size: 20px; }
+.nav-btn.active { color: var(--g1); }
+
+/* ── Scrollable content ───────────────────────────────────────────────────── */
+.scroll-area {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  padding-bottom: 88px;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-area::-webkit-scrollbar { display: none; }
+
+/* ── Cards ────────────────────────────────────────────────────────────────── */
+.card {
+  background: white; border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card-pad { padding: 16px; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 16px 24px; border-radius: 14px;
+  font-size: 15px; font-weight: 700;
+  transition: opacity 0.15s, transform 0.1s;
+  cursor: pointer;
+}
+.btn:active { opacity: 0.85; transform: scale(0.98); }
+.btn-green  { background: var(--g1); color: white; }
+.btn-outline { background: white; color: var(--g1); border: 2px solid var(--g1); }
+.btn-yellow { background: var(--yellow); color: white; }
+.btn-full   { width: 100%; }
+
+/* ── Section title ────────────────────────────────────────────────────────── */
+.section-title {
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--gray); margin: 20px 20px 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCREEN 1 — ONBOARDING                                                       */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+#s-onboarding {
+  background: var(--g1);
+  justify-content: center; align-items: center;
+  gap: 0;
+}
+.ob-logo {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; margin-bottom: 20px;
+}
+.ob-logo-icon {
+  width: 100px; height: 100px; border-radius: 28px;
+  background: rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+}
+.ob-logo-name { font-size: 36px; font-weight: 900; color: white; letter-spacing: 1px; }
+.ob-tagline {
+  font-size: 15px; color: rgba(255,255,255,0.75);
+  font-style: italic; text-align: center;
+  margin-bottom: 48px; padding: 0 32px;
+}
+.lang-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; width: 100%; padding: 0 28px;
+  margin-bottom: 32px;
+}
+.lang-btn {
+  background: white; border-radius: 16px; padding: 18px 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; transition: transform 0.15s;
+}
+.lang-btn:active { transform: scale(0.96); }
+.lang-flag { font-size: 26px; }
+.lang-name { font-size: 14px; font-weight: 700; color: var(--g1); }
+.ob-continue {
+  width: calc(100% - 56px); padding: 18px;
+  background: var(--yellow); border-radius: 16px;
+  font-size: 16px; font-weight: 800; color: white;
+  text-align: center; cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCREEN 2 — HOME / DASHBOARD                                                 */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.hero-scan {
+  background: linear-gradient(160deg, var(--g1) 0%, var(--g2) 100%);
+  padding: 28px 24px 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  flex-shrink: 0;
+}
+.hero-scan p { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; }
+.scan-circle {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: white; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  transition: transform 0.15s;
+  border: 4px solid rgba(255,255,255,0.4);
+}
+.scan-circle:active { transform: scale(0.94); }
+.scan-circle i { font-size: 40px; color: var(--g1); }
+.scan-label { color: white; font-size: 16px; font-weight: 700; }
+
+.stats-row {
+  display: flex; gap: 12px; padding: 0 20px;
+  overflow-x: auto; padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+.stats-row::-webkit-scrollbar { display: none; }
+.stat-card {
+  background: white; border-radius: 14px;
+  padding: 14px 16px; min-width: 120px;
+  box-shadow: var(--shadow); flex-shrink: 0;
+}
+.stat-card .label { font-size: 11px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-card .value { font-size: 20px; font-weight: 800; margin: 4px 0 2px; color: var(--dark); }
+.stat-card .sub   { font-size: 11px; color: var(--gray); }
+.stat-card .icon  { font-size: 22px; margin-bottom: 8px; }
+
+.recent-list { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+.recent-item {
+  background: white; border-radius: 14px; padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: var(--shadow); cursor: pointer;
+}
+.recent-item:active { opacity: 0.85; }
+.recent-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.recent-dot.red    { background: var(--red); }
+.recent-dot.yellow { background: var(--yellow); }
+.recent-dot.green  { background: var(--g2); }
+.recent-info { flex: 1; }
+.recent-info .name  { font-size: 14px; font-weight: 700; }
+.recent-info .meta  { font-size: 12px; color: var(--gray); margin-top: 2px; }
+.recent-conf {
+  font-size: 13px; font-weight: 700;
+  padding: 4px 10px; border-radius: 20px;
+}
+.recent-conf.red    { background: #FDE8E8; color: var(--red); }
+.recent-conf.yellow { background: #FEF3CD; color: #B8860B; }
+.recent-conf.green  { background: #E8F5ED; color: var(--g1); }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCREEN 3 — SCAN                                                              */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.scan-topbar {
+  background: var(--g1); padding: 48px 20px 20px;
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+.scan-hint { flex: 1; color: white; font-size: 15px; font-weight: 600; }
+
+.viewfinder {
+  flex: 1; position: relative; background: #111;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; cursor: pointer;
+}
+.vf-overlay {
+  width: 240px; height: 240px; border-radius: 24px;
+  border: 3px solid rgba(255,255,255,0.7);
+  position: absolute; z-index: 2;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.55);
+}
+.vf-corner {
+  position: absolute; width: 28px; height: 28px;
+  border-color: var(--g3); border-style: solid; border-width: 0;
+}
+.vf-corner.tl { top: -2px; left: -2px; border-top-width: 4px; border-left-width: 4px; border-radius: 8px 0 0 0; }
+.vf-corner.tr { top: -2px; right: -2px; border-top-width: 4px; border-right-width: 4px; border-radius: 0 8px 0 0; }
+.vf-corner.bl { bottom: -2px; left: -2px; border-bottom-width: 4px; border-left-width: 4px; border-radius: 0 0 0 8px; }
+.vf-corner.br { bottom: -2px; right: -2px; border-bottom-width: 4px; border-right-width: 4px; border-radius: 0 0 8px 0; }
+.scan-line {
+  position: absolute; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--g3), transparent);
+  animation: scanMove 2.5s ease-in-out infinite;
+  z-index: 3; opacity: 0;
+}
+.scan-line.active { opacity: 1; }
+@keyframes scanMove {
+  0%   { top: calc(50% - 120px); }
+  50%  { top: calc(50% + 120px); }
+  100% { top: calc(50% - 120px); }
+}
+.vf-placeholder {
+  text-align: center; color: rgba(255,255,255,0.5); z-index: 4;
+  pointer-events: none;
+}
+.vf-placeholder i { font-size: 56px; display: block; margin-bottom: 12px; }
+.vf-placeholder p { font-size: 13px; }
+#preview-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 1; display: none;
+}
+.vf-status {
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.65); color: white;
+  padding: 8px 18px; border-radius: 20px;
+  font-size: 13px; font-weight: 600; z-index: 5; white-space: nowrap;
+}
+
+.scan-controls {
+  background: var(--g1); padding: 20px 24px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.ctrl-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 20px; cursor: pointer;
+}
+.shutter {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: white; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform 0.1s;
+  border: 4px solid rgba(255,255,255,0.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.shutter:active { transform: scale(0.92); }
+.shutter i { font-size: 32px; color: var(--red); }
+.shutter.loading i { color: var(--g1); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#file-input { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCREEN 4 — RESULT                                                            */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.result-header {
+  padding: 48px 20px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  flex-shrink: 0;
+}
+.result-header.disease { background: var(--red); }
+.result-header.healthy { background: var(--g2); }
+.result-status-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.result-label { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.result-name  { color: white; font-size: 22px; font-weight: 800; text-align: center; line-height: 1.2; }
+.result-conf  {
+  background: var(--yellow); color: white;
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 13px; font-weight: 700;
+}
+
+.thumb-card {
+  margin: 16px 20px 0;
+  background: white; border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.thumb-card img { width: 100%; height: 160px; object-fit: cover; }
+.thumb-card .caption {
+  padding: 10px 14px;
+  font-size: 12px; color: var(--gray); font-weight: 500;
+}
+
+.top3-list { padding: 0 20px; display: flex; flex-direction: column; gap: 8px; }
+.top3-item {
+  background: white; border-radius: 12px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow);
+}
+.top3-rank {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800;
+}
+.top3-rank.r1 { background: var(--g1); color: white; }
+.top3-rank.r2 { background: var(--gray-light); color: var(--gray); }
+.top3-rank.r3 { background: var(--gray-light); color: var(--gray); }
+.top3-name  { flex: 1; font-size: 14px; font-weight: 600; }
+.top3-bar-wrap { width: 80px; }
+.top3-bar-bg { height: 6px; background: var(--gray-light); border-radius: 3px; overflow: hidden; }
+.top3-bar-fill { height: 100%; border-radius: 3px; background: var(--g2); }
+.top3-conf  { font-size: 12px; font-weight: 700; color: var(--g1); width: 40px; text-align: right; }
+
+.result-actions { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCREEN 5 — TREATMENT PLAN                                                    */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.treatment-hero {
+  background: var(--g1); padding: 48px 20px 24px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  flex-shrink: 0;
+}
+.treatment-hero .badge {
+  background: rgba(255,255,255,0.2); color: white;
+  padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.8px;
+}
+.treatment-hero .title { color: white; font-size: 20px; font-weight: 800; line-height: 1.2; }
+.treatment-hero .subtitle { color: rgba(255,255,255,0.7); font-size: 13px; margin-top: 4px; }
+
+.step-card {
+  background: white; border-radius: var(--radius); margin: 0 20px;
+  box-shadow: var(--shadow); display: flex; overflow: hidden;
+}
+.step-bar { width: 6px; flex-shrink: 0; }
+.step-bar.red    { background: var(--red); }
+.step-bar.yellow { background: var(--yellow); }
+.step-bar.green  { background: var(--g2); }
+.step-body { padding: 14px 14px 14px 12px; flex: 1; }
+.step-number { font-size: 11px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+.step-title  { font-size: 15px; font-weight: 700; margin: 4px 0 4px; }
+.step-desc   { font-size: 13px; color: #555; line-height: 1.5; }
+
+.mark-done {
+  margin: 0 20px; padding: 18px;
+  background: var(--g1); color: white;
+  border-radius: 14px; font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer;
+}
+.voice-btn {
+  margin: 0 20px; padding: 14px;
+  background: white; border: 2px solid var(--g1); color: var(--g1);
+  border-radius: 14px; font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCREEN 6 — COMMUNITY MAP                                                     */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.map-placeholder {
+  height: 220px; background: linear-gradient(135deg, #2d5a3d 0%, #1a4a2e 100%);
+  position: relative; flex-shrink: 0; overflow: hidden;
+}
+.map-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.map-dot {
+  position: absolute; width: 14px; height: 14px; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px currentColor;
+}
+.map-dot.red    { background: var(--red);    color: var(--red); }
+.map-dot.yellow { background: var(--yellow); color: var(--yellow); }
+.map-dot.green  { background: var(--g3);     color: var(--g3); }
+.map-legend {
+  position: absolute; bottom: 10px; left: 12px;
+  display: flex; gap: 10px;
+}
+.map-legend span {
+  display: flex; align-items: center; gap: 4px;
+  color: white; font-size: 11px; font-weight: 600;
+}
+.map-legend span::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+}
+.map-legend .l-red::before    { background: var(--red); }
+.map-legend .l-yellow::before { background: var(--yellow); }
+.map-legend .l-green::before  { background: var(--g3); }
+
+.alert-list { padding: 0 20px; display: flex; flex-direction: column; gap: 10px; }
+.alert-card {
+  background: white; border-radius: 14px; padding: 14px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: var(--shadow);
+}
+.alert-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.alert-icon.red    { background: #FDE8E8; }
+.alert-icon.yellow { background: #FEF3CD; }
+.alert-icon.green  { background: #E8F5ED; }
+.alert-info { flex: 1; }
+.alert-info .disease-name { font-size: 14px; font-weight: 700; }
+.alert-info .location     { font-size: 12px; color: var(--gray); margin-top: 2px; }
+.alert-badge {
+  padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+.alert-badge.red    { background: #FDE8E8; color: var(--red); }
+.alert-badge.yellow { background: #FEF3CD; color: #B8860B; }
+.alert-badge.green  { background: #E8F5ED; color: var(--g1); }
+
+.fab {
+  position: absolute; bottom: 88px; right: 20px;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--g1); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; box-shadow: 0 6px 20px rgba(27,94,59,0.5);
+  cursor: pointer; z-index: 40;
+}
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SCREEN 1 · ONBOARDING                                      -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="screen active" id="s-onboarding">
+    <div class="ob-logo">
+      <div class="ob-logo-icon">🌿</div>
+      <div class="ob-logo-name">AgroLaafi</div>
+    </div>
+    <p class="ob-tagline">Votre conseiller agricole intelligent</p>
+    <div class="lang-grid">
+      <div class="lang-btn" onclick="selectLang('fr')">
+        <span class="lang-flag">🇫🇷</span>
+        <span class="lang-name">Français</span>
+      </div>
+      <div class="lang-btn" onclick="selectLang('mo')">
+        <span class="lang-flag">🇧🇫</span>
+        <span class="lang-name">Mooré</span>
+      </div>
+      <div class="lang-btn" onclick="selectLang('di')">
+        <span class="lang-flag">🇧🇫</span>
+        <span class="lang-name">Dioula</span>
+      </div>
+      <div class="lang-btn" onclick="selectLang('ff')">
+        <span class="lang-flag">🇧🇫</span>
+        <span class="lang-name">Fulfuldé</span>
+      </div>
+    </div>
+    <button class="ob-continue" onclick="selectLang('fr')">Continuer →</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SCREEN 2 · HOME                                            -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="screen" id="s-home">
+    <div class="topbar" style="padding-bottom:20px">
+      <div class="topbar-logo"><i class="fa-solid fa-leaf"></i> AgroLaafi</div>
+      <div class="topbar-icon"><i class="fa-solid fa-microphone"></i></div>
+    </div>
+    <div class="scroll-area">
+      <!-- Hero scan CTA -->
+      <div class="hero-scan" style="margin-top:-1px">
+        <p>Appuyez pour analyser votre plante</p>
+        <div class="scan-circle" onclick="goTo('s-scan')">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+        <span class="scan-label">Scanner ma plante</span>
+      </div>
+
+      <!-- Stats -->
+      <div class="section-title">Aujourd'hui</div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="icon">☀️</div>
+          <div class="label">Météo</div>
+          <div class="value">34°C</div>
+          <div class="sub">Ouagadougou</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">⚠️</div>
+          <div class="label">Alertes région</div>
+          <div class="value" style="color:var(--red)">3</div>
+          <div class="sub">cas confirmés</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon">🔬</div>
+          <div class="label">Dernier scan</div>
+          <div class="value" style="color:var(--g1)" id="last-scan-result">–</div>
+          <div class="sub" id="last-scan-time">Aucun</div>
+        </div>
+      </div>
+
+      <!-- Recent diagnoses -->
+      <div class="section-title">Diagnostics récents</div>
+      <div class="recent-list" id="recent-list">
+        <div class="recent-item" onclick="showMockResult('Mildiou', 91.2)">
+          <div class="recent-dot red"></div>
+          <div class="recent-info">
+            <div class="name">Mildiou</div>
+            <div class="meta">Tomate · il y a 2h</div>
+          </div>
+          <div class="recent-conf red">91%</div>
+        </div>
+        <div class="recent-item" onclick="showMockResult('Alternariose', 78.5)">
+          <div class="recent-dot yellow"></div>
+          <div class="recent-info">
+            <div class="name">Alternariose</div>
+            <div class="meta">Tomate · hier</div>
+          </div>
+          <div class="recent-conf yellow">78%</div>
+        </div>
+        <div class="recent-item" onclick="showMockResult('Saine', 96.0)">
+          <div class="recent-dot green"></div>
+          <div class="recent-info">
+            <div class="name">Plante saine</div>
+            <div class="meta">Tomate · il y a 3j</div>
+          </div>
+          <div class="recent-conf green">96%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SCREEN 3 · SCAN                                            -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="screen" id="s-scan">
+    <div class="scan-topbar">
+      <div class="topbar-back" onclick="goTo('s-home')"><i class="fa-solid fa-arrow-left"></i></div>
+      <span class="scan-hint">Pointez sur la feuille malade</span>
+    </div>
+
+    <div class="viewfinder" onclick="triggerFileInput()">
+      <img id="preview-img" alt="preview">
+      <div class="vf-overlay">
+        <div class="vf-corner tl"></div>
+        <div class="vf-corner tr"></div>
+        <div class="vf-corner bl"></div>
+        <div class="vf-corner br"></div>
+      </div>
+      <div class="scan-line" id="scan-line"></div>
+      <div class="vf-placeholder" id="vf-placeholder">
+        <i class="fa-regular fa-image"></i>
+        <p>Toucher pour choisir<br>une photo</p>
+      </div>
+      <div class="vf-status" id="vf-status" style="display:none">En attente…</div>
+    </div>
+
+    <input type="file" id="file-input" accept="image/*" capture="environment">
+
+    <div class="scan-controls">
+      <div class="ctrl-btn" onclick="triggerFileInput()">
+        <i class="fa-solid fa-images"></i>
+      </div>
+      <div class="shutter" id="shutter-btn" onclick="analyze()">
+        <i class="fa-solid fa-circle"></i>
+      </div>
+      <div class="ctrl-btn">
+        <i class="fa-solid fa-bolt"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SCREEN 4 · RESULT                                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="screen" id="s-result">
+    <div class="result-header" id="result-header">
+      <div class="result-status-icon" id="result-icon">🦠</div>
+      <span class="result-label" id="result-label">Maladie détectée</span>
+      <div class="result-name" id="result-name">–</div>
+      <div class="result-conf" id="result-conf">–% de confiance</div>
+    </div>
+
+    <div class="scroll-area">
+      <!-- Thumbnail -->
+      <div class="thumb-card" id="thumb-card">
+        <img id="result-thumb" src="" alt="feuille analysée">
+        <div class="caption">📸 Photo analysée</div>
+      </div>
+
+      <!-- Top 3 prédictions -->
+      <div class="section-title">Top 3 prédictions</div>
+      <div class="top3-list" id="top3-list"></div>
+
+      <!-- Actions -->
+      <div class="section-title">Actions</div>
+      <div class="result-actions">
+        <button class="btn btn-green btn-full" id="btn-treatment"
+                onclick="goToTreatment()">
+          <i class="fa-solid fa-notes-medical"></i> Plan de traitement
+        </button>
+        <button class="btn btn-outline btn-full">
+          <i class="fa-solid fa-phone"></i> Appeler un expert
+        </button>
+        <button class="btn btn-outline btn-full" onclick="goTo('s-community')">
+          <i class="fa-solid fa-users"></i> Partager avec la communauté
+        </button>
+      </div>
+      <div style="height:20px"></div>
+    </div>
+
+    <button class="topbar-back" style="position:absolute;top:48px;left:16px;background:rgba(255,255,255,0.2);z-index:10"
+            onclick="goTo('s-scan')">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SCREEN 5 · TREATMENT                                        -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="screen" id="s-treatment">
+    <div class="treatment-hero">
+      <span class="badge">Traitement recommandé</span>
+      <div class="title" id="treat-title">–</div>
+      <div class="subtitle" id="treat-subtitle">–</div>
+    </div>
+    <div class="scroll-area">
+      <div class="section-title">Étapes à suivre</div>
+      <div id="steps-list" style="padding:0 20px;display:flex;flex-direction:column;gap:10px"></div>
+
+      <div class="section-title">Actions</div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding:0 0 20px">
+        <button class="mark-done">
+          <i class="fa-solid fa-circle-check"></i> Marquer comme fait
+        </button>
+        <button class="voice-btn">
+          <i class="fa-solid fa-volume-high"></i> Écouter en Mooré
+        </button>
+      </div>
+    </div>
+    <button class="topbar-back" style="position:absolute;top:48px;left:16px;background:rgba(255,255,255,0.2);z-index:10"
+            onclick="goTo('s-result')">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SCREEN 6 · COMMUNITY MAP                                   -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="screen" id="s-community">
+    <div class="topbar">
+      <div class="topbar-logo"><i class="fa-solid fa-leaf"></i> AgroLaafi</div>
+      <div class="topbar-icon"><i class="fa-solid fa-microphone"></i></div>
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="map-placeholder">
+      <div class="map-grid"></div>
+      <div class="map-dot red"    style="left:30%;top:40%"></div>
+      <div class="map-dot red"    style="left:55%;top:55%"></div>
+      <div class="map-dot yellow" style="left:70%;top:30%"></div>
+      <div class="map-dot yellow" style="left:20%;top:65%"></div>
+      <div class="map-dot green"  style="left:45%;top:25%"></div>
+      <div class="map-dot green"  style="left:80%;top:60%"></div>
+      <div class="map-legend">
+        <span class="l-red">Confirmé</span>
+        <span class="l-yellow">Suspecté</span>
+        <span class="l-green">Sain</span>
+      </div>
+    </div>
+
+    <div class="scroll-area" style="padding-bottom:100px">
+      <div class="section-title">Alertes communauté</div>
+      <div class="alert-list">
+        <div class="alert-card">
+          <div class="alert-icon red">🍅</div>
+          <div class="alert-info">
+            <div class="disease-name">Mildiou</div>
+            <div class="location">📍 Ouagadougou Nord · il y a 1h</div>
+          </div>
+          <div class="alert-badge red">Confirmé</div>
+        </div>
+        <div class="alert-card">
+          <div class="alert-icon yellow">🌿</div>
+          <div class="alert-info">
+            <div class="disease-name">Alternariose</div>
+            <div class="location">📍 Koudougou · il y a 3h</div>
+          </div>
+          <div class="alert-badge yellow">Suspecté</div>
+        </div>
+        <div class="alert-card">
+          <div class="alert-icon red">🍅</div>
+          <div class="alert-info">
+            <div class="disease-name">TYLCV</div>
+            <div class="location">📍 Bobo-Dioulasso · il y a 5h</div>
+          </div>
+          <div class="alert-badge red">Confirmé</div>
+        </div>
+        <div class="alert-card">
+          <div class="alert-icon yellow">🌿</div>
+          <div class="alert-info">
+            <div class="disease-name">Oidium</div>
+            <div class="location">📍 Banfora · hier</div>
+          </div>
+          <div class="alert-badge yellow">Suspecté</div>
+        </div>
+        <div class="alert-card">
+          <div class="alert-icon green">🌱</div>
+          <div class="alert-info">
+            <div class="disease-name">Zone saine</div>
+            <div class="location">📍 Dori · il y a 2j</div>
+          </div>
+          <div class="alert-badge green">Sain</div>
+        </div>
+      </div>
+    </div>
+    <div class="fab" onclick="alert('Poster une alerte')"><i class="fa-solid fa-plus"></i></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- BOTTOM NAV                                                  -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <nav class="bottom-nav" id="bottom-nav" style="display:none">
+    <div class="nav-btn active" id="nav-home" onclick="navTo('s-home','nav-home')">
+      <i class="fa-solid fa-house"></i><span>Accueil</span>
+    </div>
+    <div class="nav-btn" id="nav-scan" onclick="navTo('s-scan','nav-scan')">
+      <i class="fa-solid fa-camera"></i><span>Scanner</span>
+    </div>
+    <div class="nav-btn" id="nav-map" onclick="navTo('s-community','nav-map')">
+      <i class="fa-solid fa-map-location-dot"></i><span>Carte</span>
+    </div>
+    <div class="nav-btn" id="nav-community" onclick="navTo('s-community','nav-community')">
+      <i class="fa-solid fa-users"></i><span>Communauté</span>
+    </div>
+  </nav>
+</div><!-- .phone -->
+
+<script>
+/* ── State ──────────────────────────────────────────────────────────────── */
+let currentScreen  = 's-onboarding';
+let currentNavBtn  = 'nav-home';
+let lastPredictions = [];
+let selectedFile   = null;
+
+/* ── Disease database ───────────────────────────────────────────────────── */
+const DISEASES = {
+  "Acariose bronzee": {
+    name: "Acariose bronzée", type: "Acarien", icon: "🕷️", severity: "medium",
+    steps: [
+      { title: "Lavage des feuilles", desc: "Nettoyez les feuilles avec un jet d'eau pour décrocher les acariens.", urgency: "green" },
+      { title: "Huile de neem", desc: "Appliquez de l'huile de neem diluée (2 ml/L) sur toute la plante, surtout sous les feuilles.", urgency: "yellow" },
+      { title: "Contrôle hebdomadaire", desc: "Inspectez les feuilles chaque semaine. Répétez le traitement si nécessaire.", urgency: "green" }
+    ]
+  },
+  "Alternariose": {
+    name: "Alternariose (Early Blight)", type: "Champignon", icon: "🍄", severity: "high",
+    steps: [
+      { title: "Éliminez les feuilles atteintes", desc: "Retirez et brûlez toutes les feuilles présentant des taches brunes avec anneaux concentriques.", urgency: "red" },
+      { title: "Fongicide mancozèbe", desc: "Traitez avec mancozèbe 80% WP (2 g/L) tous les 7-10 jours.", urgency: "yellow" },
+      { title: "Évitez l'humidité foliaire", desc: "Arrosez le matin au pied, sans mouiller les feuilles. Espacez les plants.", urgency: "green" }
+    ]
+  },
+  "Anthracnose": {
+    name: "Anthracnose", type: "Champignon", icon: "🍄", severity: "high",
+    steps: [
+      { title: "Retirez les fruits infectés", desc: "Enlevez et détruisez tous les fruits présentant des taches noires enfoncées.", urgency: "red" },
+      { title: "Traitement cuprique", desc: "Appliquez de la bouillie bordelaise (1%) ou un fongicide à base de cuivre.", urgency: "yellow" },
+      { title: "Rotation des cultures", desc: "Ne replantez pas de tomates au même endroit pendant 2 ans.", urgency: "green" }
+    ]
+  },
+  "Araignee rouge": {
+    name: "Araignée rouge (Tétranyque)", type: "Acarien", icon: "🕷️", severity: "medium",
+    steps: [
+      { title: "Augmentez l'humidité", desc: "Les acariens détestent l'humidité. Aspergez les feuilles avec de l'eau froide régulièrement.", urgency: "green" },
+      { title: "Acaricide naturel", desc: "Préparez une solution d'ail broyé (50g/L) et vaporisez sous les feuilles.", urgency: "yellow" },
+      { title: "Traitez dès le début", desc: "Agissez rapidement: en conditions chaudes et sèches, la population double en 5 jours.", urgency: "red" }
+    ]
+  },
+  "Botrytis": {
+    name: "Botrytis (Pourriture grise)", type: "Champignon", icon: "🍄", severity: "high",
+    steps: [
+      { title: "Améliorez la ventilation", desc: "Taillez les feuilles basses, espacez les plants. Le Botrytis prolifère avec une humidité > 90%.", urgency: "red" },
+      { title: "Enlevez les parties infectées", desc: "Coupez et détruisez toutes les parties présentant une moisissure grise.", urgency: "red" },
+      { title: "Fongicide spécifique", desc: "Traitez avec iprodione ou boscalid. Alternez les matières actives.", urgency: "yellow" }
+    ]
+  },
+  "CMV": {
+    name: "CMV (Mosaïque du Concombre)", type: "Virus", icon: "🦠", severity: "high",
+    steps: [
+      { title: "Arrachez les plants infectés", desc: "Pas de traitement curatif. Arrachez et brûlez immédiatement les plants atteints.", urgency: "red" },
+      { title: "Contrôlez les pucerons", desc: "Le CMV est transmis par les pucerons. Traitez les insectes avec un insecticide systémique.", urgency: "yellow" },
+      { title: "Désinfectez vos outils", desc: "Nettoyez vos outils à l'alcool entre chaque plant pour éviter la propagation.", urgency: "yellow" }
+    ]
+  },
+  "Carence azote": {
+    name: "Carence en azote", type: "Physiologique", icon: "🌿", severity: "medium",
+    steps: [
+      { title: "Fertilisation azotée", desc: "Apportez de l'urée (2g/L en pulvérisation foliaire) ou de l'engrais NPK riche en N.", urgency: "yellow" },
+      { title: "Vérifiez le pH du sol", desc: "Un pH < 5.5 bloque l'absorption de l'azote. Chaulez si nécessaire.", urgency: "green" },
+      { title: "Maintenez l'humidité du sol", desc: "Un sol trop sec empêche la dissolution des engrais. Arrosez régulièrement.", urgency: "green" }
+    ]
+  },
+  "Carence potassium": {
+    name: "Carence en potassium", type: "Physiologique", icon: "🌿", severity: "low",
+    steps: [
+      { title: "Apport de potasse", desc: "Épandez du sulfate de potassium (SOP) ou du chlorure de potassium autour des plants.", urgency: "yellow" },
+      { title: "Cendres de bois", desc: "Les cendres de bois sont riches en potassium. Apportez 200g/m² au pied des plants.", urgency: "green" },
+      { title: "Évitez l'excès d'azote", desc: "Un excès d'azote peut bloquer l'absorption du potassium. Équilibrez vos apports.", urgency: "green" }
+    ]
+  },
+  "Coup de soleil": {
+    name: "Coup de soleil", type: "Physiologique", icon: "☀️", severity: "low",
+    steps: [
+      { title: "Ombrage temporaire", desc: "Installez un filet d'ombrage (50%) pendant les heures les plus chaudes (11h-16h).", urgency: "yellow" },
+      { title: "Arrosage matinal", desc: "Arrosez tôt le matin pour éviter les chocs thermiques foliaires.", urgency: "green" },
+      { title: "Mulching", desc: "Paillez le sol pour réduire la chaleur au niveau des racines.", urgency: "green" }
+    ]
+  },
+  "Fletrissement bacterien": {
+    name: "Flétrissement bactérien", type: "Bactérie", icon: "🦠", severity: "high",
+    steps: [
+      { title: "Arrachez les plants malades", desc: "Pas de traitement efficace. Arrachez immédiatement les plants flétris et brûlez-les.", urgency: "red" },
+      { title: "Désinfectez le sol", desc: "La bactérie survit dans le sol des années. Solarisez le sol (film plastique, 6 semaines).", urgency: "red" },
+      { title: "Rotation longue", desc: "Évitez les solanacées (tomate, poivron, aubergine) pendant au moins 3 ans.", urgency: "yellow" }
+    ]
+  },
+  "Fonte de semis": {
+    name: "Fonte de semis", type: "Champignon", icon: "🍄", severity: "medium",
+    steps: [
+      { title: "Améliorez le drainage", desc: "Semez dans un substrat bien drainant (sable + compost). Évitez les excès d'eau.", urgency: "yellow" },
+      { title: "Traitez les semences", desc: "Enrobez les semences avec un fongicide (thirame) avant le semis.", urgency: "yellow" },
+      { title: "Désinfectez les bacs", desc: "Nettoyez et désinfectez les plaques et bacs de semis à l'eau de Javel diluée.", urgency: "green" }
+    ]
+  },
+  "Fusariose": {
+    name: "Fusariose", type: "Champignon", icon: "🍄", severity: "high",
+    steps: [
+      { title: "Arrachez les plants atteints", desc: "La fusariose est incurable. Retirez les plants flétris côté jaune-brun et brûlez.", urgency: "red" },
+      { title: "Choisissez des variétés résistantes", desc: "Replantez avec des variétés portant la mention 'F' (Fusarium resistant) sur l'emballage.", urgency: "yellow" },
+      { title: "Solarisation", desc: "Traitez le sol contaminé par solarisation pendant 6 semaines en saison chaude.", urgency: "green" }
+    ]
+  },
+  "Gale bacterienne": {
+    name: "Gale bactérienne", type: "Bactérie", icon: "🦠", severity: "medium",
+    steps: [
+      { title: "Traitez au cuivre", desc: "Appliquez de la bouillie bordelaise (1%) ou hydroxyde de cuivre dès les premiers symptômes.", urgency: "yellow" },
+      { title: "Retirez les feuilles infectées", desc: "Éliminez les feuilles et fruits présentant des pustules brunes/noires.", urgency: "yellow" },
+      { title: "Évitez les blessures", desc: "La bactérie pénètre par les blessures. Manipulez les plants avec précaution.", urgency: "green" }
+    ]
+  },
+  "Mildiou": {
+    name: "Mildiou (Late Blight)", type: "Champignon", icon: "🍄", severity: "high",
+    steps: [
+      { title: "Retirez les parties infectées", desc: "Enlevez immédiatement feuilles et tiges présentant des taches brunes/noires avec halo vert-clair.", urgency: "red" },
+      { title: "Bouillie bordelaise", desc: "Traitez avec bouillie bordelaise (1%) ou métalaxyl. Répétez tous les 7 jours.", urgency: "yellow" },
+      { title: "Améliorez la circulation d'air", desc: "Espacez les plants, taillez les feuilles basses. Arrosez au pied le matin.", urgency: "green" }
+    ]
+  },
+  "Mineuse tomate": {
+    name: "Mineuse de la tomate (Tuta absoluta)", type: "Insecte", icon: "🦋", severity: "high",
+    steps: [
+      { title: "Pièges à phéromones", desc: "Installez des pièges à phéromones sexuelles (1 piège/500m²) pour capturer les mâles.", urgency: "yellow" },
+      { title: "Insecticides biologiques", desc: "Traitez avec du Bacillus thuringiensis (Bt) ou spinosad. Répétez tous les 7 jours.", urgency: "yellow" },
+      { title: "Filets insect-proof", desc: "Couvrez les serres avec des filets anti-insectes (maille < 0.8mm).", urgency: "green" }
+    ]
+  },
+  "Mouche blanche": {
+    name: "Mouche blanche (Bemisia tabaci)", type: "Insecte", icon: "🦟", severity: "medium",
+    steps: [
+      { title: "Pièges collants jaunes", desc: "Installez des plaques collantes jaunes (1/10m²). Les aleurodes sont attirées par le jaune.", urgency: "green" },
+      { title: "Savon insecticide", desc: "Vaporisez une solution de savon noir (5 ml/L) sous les feuilles le soir.", urgency: "yellow" },
+      { title: "Prédateurs naturels", desc: "Introduisez Encarsia formosa ou Eretmocerus en serre pour contrôle biologique.", urgency: "green" }
+    ]
+  },
+  "Necrose apicale": {
+    name: "Nécrose apicale (Blossom End Rot)", type: "Physiologique", icon: "🍅", severity: "medium",
+    steps: [
+      { title: "Apport de calcium", desc: "Pulvérisez du chlorure ou nitrate de calcium (5g/L) sur les fruits en formation.", urgency: "yellow" },
+      { title: "Arrosage régulier", desc: "La nécrose apicale est liée à un stress hydrique. Maintenez une humidité du sol constante.", urgency: "yellow" },
+      { title: "Paillez le sol", desc: "Le mulching régule les variations d'humidité qui empêchent l'absorption du calcium.", urgency: "green" }
+    ]
+  },
+  "Nematodes galles": {
+    name: "Nématodes à galles", type: "Parasite", icon: "🪱", severity: "high",
+    steps: [
+      { title: "Solarisez le sol", desc: "Couvrez le sol humide avec un film plastique transparent pendant 6 semaines en plein soleil.", urgency: "red" },
+      { title: "Plantes répulsives", desc: "Semez de la tagète (Tagetes) comme engrais vert: ses racines sont toxiques pour les nématodes.", urgency: "yellow" },
+      { title: "Variétés résistantes", desc: "Choisissez des variétés portant la mention 'N' (Nematode resistant).", urgency: "green" }
+    ]
+  },
+  "Noctuelle tomate": {
+    name: "Noctuelle de la tomate", type: "Insecte", icon: "🦋", severity: "medium",
+    steps: [
+      { title: "Ramassage manuel", desc: "Inspectez les plants le soir/matin et écrasez les chenilles que vous trouvez.", urgency: "yellow" },
+      { title: "Bt (Bacillus thuringiensis)", desc: "Traitez au Bt (Dipel, Thuricide) le soir quand les chenilles sortent. Répétez tous les 5 jours.", urgency: "yellow" },
+      { title: "Ennemis naturels", desc: "Encouragez les oiseaux et les guêpes parasites qui pondent dans les chenilles.", urgency: "green" }
+    ]
+  },
+  "Oidium": {
+    name: "Oïdium (Powdery Mildew)", type: "Champignon", icon: "🍄", severity: "medium",
+    steps: [
+      { title: "Soufre mouillable", desc: "Traitez avec du soufre mouillable (3g/L) ou du bicarbonate de soude (5g/L).", urgency: "yellow" },
+      { title: "Retirez les feuilles atteintes", desc: "Enlevez les feuilles couvertes de poudre blanche. Brûlez-les.", urgency: "yellow" },
+      { title: "Améliorez la ventilation", desc: "L'oïdium se développe par temps sec et chaud. Espacez les plants.", urgency: "green" }
+    ]
+  },
+  "Puceron": {
+    name: "Puceron (Myzus persicae)", type: "Insecte", icon: "🐛", severity: "medium",
+    steps: [
+      { title: "Jet d'eau", desc: "Un simple jet d'eau décroches les pucerons. Répétez chaque matin pendant une semaine.", urgency: "green" },
+      { title: "Savon noir + ail", desc: "Mélangez 10ml de savon noir + 2 gousses d'ail broyées dans 1L d'eau. Vaporisez.", urgency: "yellow" },
+      { title: "Favorisez les auxiliaires", desc: "Les coccinelles et chrysopes mangent les pucerons. Évitez les insecticides à large spectre.", urgency: "green" }
+    ]
+  },
+  "Saine": {
+    name: "Plante saine", type: "Aucune maladie", icon: "✅", severity: "none",
+    steps: [
+      { title: "Continuez vos bonnes pratiques", desc: "Votre plante est en bonne santé. Maintenez un arrosage régulier et une fertilisation équilibrée.", urgency: "green" },
+      { title: "Surveillance préventive", desc: "Inspectez vos plants chaque semaine pour détecter les premiers signes de maladie.", urgency: "green" },
+      { title: "Traitement préventif optionnel", desc: "En saison des pluies, une application préventive de bouillie bordelaise (0.5%) peut protéger vos plants.", urgency: "green" }
+    ]
+  },
+  "Stemphyliose": {
+    name: "Stemphyliose (Septoriose)", type: "Champignon", icon: "🍄", severity: "medium",
+    steps: [
+      { title: "Retirez les feuilles tachées", desc: "Éliminez les feuilles présentant de petites taches circulaires avec halo jaune.", urgency: "yellow" },
+      { title: "Fongicide à base de chlorothalonil", desc: "Traitez tous les 10 jours avec chlorothalonil ou mancozèbe.", urgency: "yellow" },
+      { title: "Paillez le sol", desc: "Les spores viennent du sol et éclaboussent sur les feuilles. Le paillage les bloque.", urgency: "green" }
+    ]
+  },
+  "TMV": {
+    name: "TMV (Mosaïque du Tabac)", type: "Virus", icon: "🦠", severity: "high",
+    steps: [
+      { title: "Retirez les plants infectés", desc: "Aucun traitement curatif. Arrachez et brûlez les plants présentant une mosaïque jaune-vert.", urgency: "red" },
+      { title: "Lavez-vous les mains", desc: "Le TMV se transmet par contact. Lavez-vous les mains et désinfectez vos outils.", urgency: "red" },
+      { title: "Arrêtez de fumer près des cultures", desc: "Le tabac est porteur du TMV. Ne fumez pas en travaillant avec les tomates.", urgency: "yellow" }
+    ]
+  },
+  "TYLCV": {
+    name: "TYLCV (Enroulement jaune)", type: "Virus", icon: "🦠", severity: "high",
+    steps: [
+      { title: "Arrachez les plants malades", desc: "Pas de traitement. Retirez immédiatement les plants aux feuilles enroulées et jaunies.", urgency: "red" },
+      { title: "Contrôlez les aleurodes", desc: "Le TYLCV est transmis par la mouche blanche. Traitez avec imidaclopride ou thiamethoxam.", urgency: "red" },
+      { title: "Filets anti-insectes", desc: "Protégez vos semis et jeunes plants avec des filets anti-insectes (maille < 0.8mm).", urgency: "yellow" }
+    ]
+  },
+  "Tarsoneme": {
+    name: "Tarsonème", type: "Acarien", icon: "🕷️", severity: "medium",
+    steps: [
+      { title: "Augmentez l'humidité", desc: "Les tarsonèmes prolifèrent par temps sec. Brumisez régulièrement les feuilles.", urgency: "yellow" },
+      { title: "Acaricide spécifique", desc: "Traitez avec de l'abamectine ou spiromésifène. Les acaricides standards sont souvent insuffisants.", urgency: "yellow" },
+      { title: "Éliminez les plants très atteints", desc: "Les plants fortement infestés sont des réservoirs. Arrachez et brûlez-les.", urgency: "red" }
+    ]
+  },
+  "Thrips": {
+    name: "Thrips (Frankliniella)", type: "Insecte", icon: "🦟", severity: "medium",
+    steps: [
+      { title: "Pièges collants bleus", desc: "Installez des pièges collants bleus (1/10m²). Les thrips sont attirés par le bleu.", urgency: "green" },
+      { title: "Spinosad", desc: "Traitez avec spinosad (produit d'origine naturelle) le soir. Respectez les délais de récolte.", urgency: "yellow" },
+      { title: "Prédateur Amblyseius", desc: "Lâchez l'acarien prédateur Amblyseius cucumeris en serre (50/m²).", urgency: "green" }
+    ]
+  },
+  "Verticilliose": {
+    name: "Verticilliose", type: "Champignon", icon: "🍄", severity: "high",
+    steps: [
+      { title: "Arrachez les plants flétris", desc: "La verticilliose est incurable. Retirez les plants présentant un flétrissement unilatéral.", urgency: "red" },
+      { title: "Greffage sur porte-greffe résistant", desc: "Greffez vos tomates sur un porte-greffe résistant (ex: Maxifort, Beaufort).", urgency: "yellow" },
+      { title: "Solarisez le sol", desc: "Traitez le sol contaminé par solarisation (film plastique 6 semaines) avant de replanter.", urgency: "yellow" }
+    ]
+  }
+};
+
+/* ── Navigation ──────────────────────────────────────────────────────────── */
+function goTo(screenId) {
+  const prev = document.getElementById(currentScreen);
+  const next = document.getElementById(screenId);
+  if (!next || screenId === currentScreen) return;
+
+  prev.classList.remove('active');
+  prev.classList.add('out');
+  next.classList.add('active');
+
+  setTimeout(() => prev.classList.remove('out'), 320);
+  currentScreen = screenId;
+}
+
+function navTo(screenId, navBtnId) {
+  document.getElementById(currentNavBtn).classList.remove('active');
+  document.getElementById(navBtnId).classList.add('active');
+  currentNavBtn = navBtnId;
+  goTo(screenId);
+}
+
+function selectLang(lang) {
+  document.getElementById('bottom-nav').style.display = 'flex';
+  goTo('s-home');
+}
+
+/* ── File input ──────────────────────────────────────────────────────────── */
+const fileInput = document.getElementById('file-input');
+fileInput.addEventListener('change', function() {
+  if (!this.files || !this.files[0]) return;
+  selectedFile = this.files[0];
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('preview-img');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    document.getElementById('vf-placeholder').style.display = 'none';
+    document.getElementById('vf-status').style.display = 'block';
+    document.getElementById('vf-status').textContent = '✓ Photo prête — appuyez sur le bouton rouge';
+  };
+  reader.readAsDataURL(selectedFile);
+});
+
+function triggerFileInput() {
+  fileInput.click();
+}
+
+/* ── Analyze ─────────────────────────────────────────────────────────────── */
+async function analyze() {
+  if (!selectedFile) {
+    fileInput.click();
+    return;
+  }
+
+  const shutter   = document.getElementById('shutter-btn');
+  const scanLine  = document.getElementById('scan-line');
+  const statusTxt = document.getElementById('vf-status');
+
+  shutter.classList.add('loading');
+  shutter.innerHTML = '<i class="fa-solid fa-spinner"></i>';
+  scanLine.classList.add('active');
+  statusTxt.style.display = 'block';
+  statusTxt.textContent = 'Analyse en cours…';
+
+  try {
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    const resp = await fetch('/predict', { method: 'POST', body: formData });
+    if (!resp.ok) throw new Error(`Erreur serveur ${resp.status}`);
+    const data = await resp.json();
+
+    lastPredictions = data.predictions;
+    buildResult(data.predictions);
+    goTo('s-result');
+
+  } catch (err) {
+    statusTxt.textContent = '⚠ Erreur : ' + err.message;
+    setTimeout(() => { statusTxt.textContent = 'Essayez encore'; }, 3000);
+  } finally {
+    shutter.classList.remove('loading');
+    shutter.innerHTML = '<i class="fa-solid fa-circle"></i>';
+    scanLine.classList.remove('active');
+  }
+}
+
+/* ── Build result screen ─────────────────────────────────────────────────── */
+function buildResult(predictions) {
+  const top     = predictions[0];
+  const isHealthy = top.disease === 'Saine';
+  const diseaseKey = top.disease;
+  const info    = DISEASES[diseaseKey] || { name: diseaseKey, icon: '🌿', type: '—' };
+
+  // Header
+  const header = document.getElementById('result-header');
+  header.className = 'result-header ' + (isHealthy ? 'healthy' : 'disease');
+  document.getElementById('result-icon').textContent = info.icon;
+  document.getElementById('result-label').textContent = isHealthy ? 'Plante saine ✓' : 'Maladie détectée';
+  document.getElementById('result-name').textContent  = info.name;
+  document.getElementById('result-conf').textContent  = `${top.confidence}% de confiance`;
+
+  // Thumbnail
+  const thumb = document.getElementById('result-thumb');
+  thumb.src = document.getElementById('preview-img').src;
+
+  // Top-3 list
+  const list = document.getElementById('top3-list');
+  list.innerHTML = '';
+  predictions.forEach((p, i) => {
+    const pInfo = DISEASES[p.disease] || { name: p.disease };
+    const rank  = ['r1','r2','r3'][i];
+    list.innerHTML += `
+      <div class="top3-item">
+        <div class="top3-rank ${rank}">${i+1}</div>
+        <div class="top3-name">${pInfo.name || p.disease}</div>
+        <div class="top3-bar-wrap">
+          <div class="top3-bar-bg">
+            <div class="top3-bar-fill" style="width:${p.confidence}%"></div>
+          </div>
+        </div>
+        <div class="top3-conf">${p.confidence}%</div>
+      </div>`;
+  });
+
+  // Treatment button
+  const btnTreat = document.getElementById('btn-treatment');
+  btnTreat.style.display = isHealthy ? 'none' : 'flex';
+
+  // Update last scan on home
+  document.getElementById('last-scan-result').textContent = isHealthy ? '✓ Saine' : info.name.split(' ')[0];
+  document.getElementById('last-scan-time').textContent = 'À l\'instant';
+}
+
+/* ── Treatment screen ────────────────────────────────────────────────────── */
+function goToTreatment() {
+  if (!lastPredictions.length) return;
+  const diseaseKey = lastPredictions[0].disease;
+  const info = DISEASES[diseaseKey] || { name: diseaseKey, steps: [] };
+
+  document.getElementById('treat-title').textContent    = info.name;
+  document.getElementById('treat-subtitle').textContent = info.type + ' — Traitement recommandé';
+
+  const list = document.getElementById('steps-list');
+  list.innerHTML = '';
+  (info.steps || []).forEach((step, i) => {
+    list.innerHTML += `
+      <div class="step-card">
+        <div class="step-bar ${step.urgency}"></div>
+        <div class="step-body">
+          <div class="step-number">Étape ${i+1}</div>
+          <div class="step-title">${step.title}</div>
+          <div class="step-desc">${step.desc}</div>
+        </div>
+      </div>`;
+  });
+
+  goTo('s-treatment');
+}
+
+/* ── Mock result (for demo clicks on home) ───────────────────────────────── */
+function showMockResult(diseaseName, conf) {
+  const info  = DISEASES[diseaseName] || { name: diseaseName };
+  const other = Object.keys(DISEASES).filter(k => k !== diseaseName).slice(0, 2);
+
+  lastPredictions = [
+    { disease: diseaseName, confidence: conf },
+    { disease: other[0], confidence: Math.round((100-conf)*0.6*10)/10 },
+    { disease: other[1], confidence: Math.round((100-conf)*0.3*10)/10 },
+  ];
+
+  // use placeholder image
+  const img = document.getElementById('preview-img');
+  img.style.display = 'none';
+  document.getElementById('result-thumb').src = '';
+
+  buildResult(lastPredictions);
+  goTo('s-result');
+}
+</script>
+</body>
+</html>
